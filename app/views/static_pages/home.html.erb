@@ -1,0 +1,16 @@
+<%= form_for :user do |form| %>
+  <%= form.label :id, "Flickr user id"%>
+  <%= form.text_field :id %>
+  <%= form.submit "Get photo stream"  %>
+<% end  %>
+
+
+<% if @person %>
+  <h1>Photo stream of <%= @person.realname%></h1>
+  <ul>
+    <% @photo_list.each do |photo| %>
+    <% image_url = "https://farm#{photo.farm}.staticflickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_m.jpg" %>
+    <%= image_tag(image_url, :alt => "#{photo.title}") %>
+    <% end %>
+  </ul>
+<% end %>
